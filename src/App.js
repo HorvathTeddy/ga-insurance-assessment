@@ -32,15 +32,11 @@ function App() {
         { id: 9, question: "Do you use MFA to protect all local and remote access privileged user accounts?", answer: null, comment: '', showCommentBox: false },
         { id: 10, question: "Do you manage privileged accounts access management software (PAM)?", answer: null, comment: '', showCommentBox: false },
         { id: 11, question: "If a PAM solution is deployed, is it accessible in a \"check-in/out\" model?", answer: null, comment: '', showCommentBox: false },
-        { id: 11, question: "Do you use MFA to protect all local and remote access privileged user accounts?", answer: null, comment: '', showCommentBox: false },
+        { id: 12, question: "Do you use MFA to protect all local and remote access privileged user accounts?", answer: null, comment: '', showCommentBox: false },
       ],
     },
     // ... potentially more sections
   ]);
-
-  const getScoreLabel = (score) => {
-    return score >= 70 ? 'Adequate' : 'Low';
-  };
 
   const handleQuestionChange = (sectionIndex, questionId, answer, comment) => {
     setSections(sections.map((section, index) => {
@@ -67,6 +63,10 @@ function App() {
     // Calculate the score based on the number of 'yes' answers
     return (answeredQuestions.length > 0 ? (totalYes / answeredQuestions.length) * 100 : 0)
   };
+
+  const score = calculateScore().toFixed(0);
+  const scoreLabel = score >= 70 ? 'Adequate' : 'Low';
+  const scoreColor = score >= 70 ? '#04C304' : 'red'; // Choose appropriate colors
 
   return (
     <div className="assessment-form">
@@ -105,10 +105,12 @@ function App() {
         
       </header>
       <section>
-        <div className="score">
-          <div className="percentage">{calculateScore().toFixed(0)}%</div>
-          <p id='overall-score'>Overall Cyber Insurability Score: {calculateScore().toFixed(0)}% - {getScoreLabel(calculateScore())}</p>
+      <div className="score">
+        <div className="percentage" style={{ backgroundColor: scoreColor }}>
+          {score}%
         </div>
+        <p id='overall-score'>Overall Cyber Insurability Score: {score}% - {scoreLabel}</p>
+      </div>
       </section>
       <form>
       {sections.map((section, sectionIndex) => (
@@ -129,9 +131,11 @@ function App() {
   </section>
 ))}
 <div className="score">
-          <div className="percentage">{calculateScore().toFixed(0)}%</div>
-          <p id='overall-score'>Overall Cyber Insurability Score: {calculateScore().toFixed(0)}% - Low</p>
+        <div className="percentage" style={{ backgroundColor: scoreColor }}>
+          {score}%
         </div>
+        <p id='overall-score'>Overall Cyber Insurability Score: {score}% - {scoreLabel}</p>
+      </div>
         <div className='reset-btn-container'>
           <button className="reset-btn"type="submit">Reset</button>
         </div>

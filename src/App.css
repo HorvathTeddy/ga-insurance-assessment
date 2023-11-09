@@ -27,7 +27,7 @@ h1 {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding-left: 25px;
+  padding-left: 20px;
 }
 
 .logo {
@@ -40,7 +40,7 @@ h1 {
 }
 
 .selected.no {
-  background-color: #FF6D6D;
+  background-color: red;
 }
 
 .date-container {
@@ -105,7 +105,7 @@ h1 {
 }
 
 .percentage {
-  background: #FF6D6D;
+  background: red;
   padding: 5px 20px;
   color: white;
 }
