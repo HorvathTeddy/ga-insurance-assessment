@@ -142,3 +142,66 @@ h1 {
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .header-container, .left-container, .right-container, .date-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .date-container {
+    grid-template-columns: 1fr; /* Stacks the date inputs vertically */
+  }
+
+  .date-container input,
+  .date-container span {
+    margin-left: 0; /* Aligns the date inputs and labels in the center */
+  }
+
+  .logo {
+    width: 80px; /* Slightly smaller logo for tablet screens */
+  }
+
+  /* Adjusting padding and margins for smaller screens */
+  .assessment-form {
+    padding: 50px 15px;
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 480px) {
+  .header-container, .left-container, .right-container, .date-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .logo {
+    width: 60px; /* Smaller logo for mobile screens */
+  }
+
+  .assessment-form {
+    padding: 20px 10px; /* Smaller padding for smaller screens */
+  }
+
+  .page-header, .sub-header {
+    font-size: 1.2rem; /* Smaller font size for smaller screens */
+  }
+
+  .date-container {
+    grid-template-columns: 1fr; /* Stacks the date inputs vertically */
+  }
+
+  .date-container label, 
+  .date-container span, 
+  .date-container input {
+    font-size: 0.9rem; /* Smaller font size for labels and inputs */
+  }
+
+  .score {
+    flex-direction: column; /* Stack score label and percentage */
+  }
+
+  .percentage, #overall-score {
+    font-size: 1rem; /* Smaller font size for the score */
+  }
+}
